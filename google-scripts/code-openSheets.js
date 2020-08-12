@@ -23,12 +23,6 @@ function abrirBancoDados() {
     }
 }
 
-function abrirCalcMulta() {
-    var app = SpreadsheetApp.getActiveSpreadsheet();
-    var sheet = app.getSheetByName("CalcMulta").activate();
-    sheet.getRange("C10:G10").clearContent();
-}
-
 function abrirCalendar() {
     var app = SpreadsheetApp.getActiveSpreadsheet();
     var sheet = app.getSheetByName("Calendar");

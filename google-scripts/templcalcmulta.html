@@ -4,22 +4,35 @@
 <head>
     <base target="_top">
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!--Import Google Icon Font-->
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <!--Let browser know website is optimized for mobile-->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <!-- Compiled and minified CSS -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="canonical" href="https://getbootstrap.com/docs/4.5/examples/checkout/">
 
-    <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/js/materialize.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
 
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
+    <!-- Favicons -->
+    <link rel="apple-touch-icon" href="/docs/4.5/assets/img/favicons/apple-touch-icon.png" sizes="180x180">
+    <link rel="icon" href="/docs/4.5/assets/img/favicons/favicon-32x32.png" sizes="32x32" type="image/png">
+    <link rel="icon" href="/docs/4.5/assets/img/favicons/favicon-16x16.png" sizes="16x16" type="image/png">
+    <link rel="manifest" href="/docs/4.5/assets/img/favicons/manifest.json">
+    <link rel="mask-icon" href="/docs/4.5/assets/img/favicons/safari-pinned-tab.svg" color="#563d7c">
+    <link rel="icon" href="/docs/4.5/assets/img/favicons/favicon.ico">
+    <meta name="msapplication-config" content="/docs/4.5/assets/img/favicons/browserconfig.xml">
+    <meta name="theme-color" content="#563d7c">
     <style>
-        * {
-            font-family: "Roboto", Lucida Console, Trebuchet, sans-serif;
+        .bd-placeholder-img {
+            font-size: 1.125rem;
+            text-anchor: middle;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+        
+        @media (min-width: 768px) {
+            .bd-placeholder-img-lg {
+                font-size: 3.5rem;
+            }
         }
         
         div.cadastro {
@@ -46,57 +59,117 @@
             margin: 10px
         }
         
-        #fechar {
-            background-color: #eeeeee;
-            font-size: 12px;
-            color: #333333
-        }
-        
         #cadastrar {
             background-color: #00e9ff;
             font-size: 12px;
         }
+        
+        #valor {
+            color: red;
+            font-style: bold
+        }
+        
+        button {
+            border: #333333 1px solid;
+            margin: 20px;
+        }
     </style>
+    <!-- Custom styles for this template -->
+    <link href="form-validation.css" rel="stylesheet">
 </head>
 
-<body>
-    <div class="form">
+<body class="bg-light">
+    <div class="container">
+        <div class="py-5 text-center">
+            <h3>Pena de Multa</h3>
+        </div>
 
-    </div>
+        <div class="col-md-8 order-md-1">
+            <form class="needs-validation" novalidate>
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label for="datadofato">Data do fato</label>
+                        <input type="date" class="form-control" id="datadofato" placeholder="" value="" required>
+                        <div class="invalid-feedback">
+                            Data requerida pala o cálculo
+                        </div>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label for="diasmulta">Dias-multa</label>
+                        <input type="number" class="form-control" id="diasmulta" placeholder="" value="" required>
+                        <div class="invalid-feedback">
+                            Valor requerido para o cálculo
+                        </div>
+                    </div>
+                    <button class="btn btn-primary" id="calcular">calcular</button>
+                </div>
+            </form>
+        </div>
 
-    <div class="buttons">
-        <div>
-            <a class="waves-effect waves-teal btn-large white" id="calcular">calcular</a>
-            <a class="waves-effect waves-teal btn-large cyan accent-3" id="fechar">fechar</a>
+        <div class="row">
+            <div class="col-md-4 order-md-2 mb-4">
+                <h4 class="d-flex justify-content-between align-items-center mb-3">
+                    <span class="text-muted">Resultado</span>
+                </h4>
+                <ul class="list-group mb-3">
+                    <li class="list-group-item d-flex justify-content-between lh-condensed">
+                        <div>
+                            <h6 class="my-0">Data base</h6>
+                            <small class="text-muted" id="database"></small>
+                        </div>
+                        <span class="text-muted" id="datares">R$ 0,00</span>
+                    </li>
+                </ul>
+                <ul class="list-group mb-3">
+                    <li class="list-group-item d-flex justify-content-between lh-condensed">
+                        <div>
+                            <h6 class="my-0">Valor da multa</h6>
+                            <small class="text-muted">Referente aos dados informados</small>
+                        </div>
+                        <span class="text-muted" id="valor">R$ 0,00</span>
+                    </li>
+                </ul>
+            </div>
         </div>
     </div>
 
 
-
     <script type="text/javascript">
-        document.getElementById("fechar").addEventListener("click", fechar);
         document.getElementById("calcular").addEventListener("click", calcular);
-        //carregaTipos();
 
         function calcular() {
-            var pr = document.getElementById("processo").value;
-            var tp = document.getElementById("tipo").value;
-            var dados = {
-                processo: pr,
-                tipo: tp
+            var df = document.getElementById("datadofato").value;
+            var dm = document.getElementById("diasmulta").value;
+            var ref = 0;
+            var base = 0;
+            var salariomin = [64.79, 70, 100, 112, 120, 130, 136, 151, 180, 200, 240, 260, 300, 350, 380, 415, 465, 510, 540, 545, 622, 678, 724, 788, 880,
+                937, 954, 998, 1039, 1045
+            ];
+            var datas = ["01/07/1994", "01/09/1994", "01/05/1995", "01/05/1996", "01/05/1997", "01/05/1998", "01/05/1999", "01/04/2000", "01/04/2001", "01/04/2002",
+                "01/04/2003", "01/05/2004", "01/05/2005", "01/04/2006", "01/04/2007", "01/03/2008", "01/02/2009", "01/01/2010", "01/01/2011", "25/02/2011", "01/01/2012",
+                "01/01/2013", "01/01/2014", "01/01/2015", "01/01/2016", "01/01/2017", "01/01/2018", "01/01/2019", "01/01/2020", "01/02/2020"
+            ];
+
+
+            if (df != "" && dm != "") {
+
+                for (var i = 0; i < salariomin.length; i++) {
+                    if (Date.parse(df) > Date.parse(datas[i])) {
+                        base = datas[i];
+                        ref = salariomin[i];
+                    }
+                }
+                document.getElementById("datares").innerHTML = "Valor do Salário Mínimo = R$ " + ref.toFixed(2);
+                document.getElementById("database").innerHTML = base;
+                var total = (dm * ref) / 30;
+                document.getElementById("valor").innerHTML = "R$ " + total.toFixed(2);
             }
         }
-
-        function fechar() {
-            google.script.host.close();
-        }
     </script>
-    <script>
-        $(document).ready(function() {
-            $('select').formSelect();
-        });
-    </script>
-
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://getbootstrap.com/docs/4.5/examples/checkout/form-validation.js"></script>
 </body>
 
 </html>
