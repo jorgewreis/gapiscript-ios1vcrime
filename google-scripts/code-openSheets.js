@@ -12,10 +12,15 @@ function abrirAgenda() {
     sheet.getRange("A8").activate();
 }
 
-function abrirZonaMand() {
+function abrirBancoDados() {
     var app = SpreadsheetApp.getActiveSpreadsheet();
-    var sheet = app.getSheetByName("ZonaMand").activate();
-    sheet.getRange("F10").clearContent();
+    var sheet = app.getSheetByName("BancodeDados");
+    var nivel = verificaSeg();
+    if (nivel.code >= 5) { //Acesso níveis 5 e 6 - Restrict / Extreme
+        sheet.activate();
+    } else {
+        app.toast('Seu nível de segurança é ' + nivel.code + ' - ' + nivel.desc + '. Você não tem permissão de acesso ao Banco de Dados.', "Acess denied!", 10);
+    }
 }
 
 function abrirCalcMulta() {
@@ -24,31 +29,15 @@ function abrirCalcMulta() {
     sheet.getRange("C10:G10").clearContent();
 }
 
-function abrirLotPol() {
+function abrirCalendar() {
     var app = SpreadsheetApp.getActiveSpreadsheet();
-    var sheet = app.getSheetByName("LotPol").activate();
-    sheet.getRange("F12").clearContent();
-}
-
-function abrirOficios() {
-    var app = SpreadsheetApp.getActiveSpreadsheet();
-    app.getSheetByName("Ofícios").activate();
-}
-
-function abrirJuntada() {
-    var app = SpreadsheetApp.getActiveSpreadsheet();
-    app.getSheetByName("Juntada").activate();
-}
-
-function abrirVistas() {
-    var app = SpreadsheetApp.getActiveSpreadsheet();
-    app.getSheetByName("Vistas").activate();
-}
-
-function abrirVidConf() {
-    var app = SpreadsheetApp.getActiveSpreadsheet();
-    var sheet = app.getSheetByName("VidConf").activate();
-    sheet.getRange("B11").activate();
+    var sheet = app.getSheetByName("Calendar");
+    var nivel = verificaSeg();
+    if (nivel.code >= 4) { //Acesso níveis 4 a 6 - Exclusive - Extreme
+        sheet.activate();
+    } else {
+        app.toast('Seu nível de segurança é ' + nivel.code + ' - ' + nivel.desc + '. Você não tem permissão de acesso aos Ajustes de Calendário.', "Acess denied!", 10);
+    }
 }
 
 function abrirCartPrec() {
@@ -57,19 +46,35 @@ function abrirCartPrec() {
     sheet.getRange("B11").activate();
 }
 
-function abrirReusPresos() {
+function abrirJuntada() {
     var app = SpreadsheetApp.getActiveSpreadsheet();
-    app.getSheetByName("ReusPresos").activate();
+    app.getSheetByName("Juntada").activate();
 }
 
-function abrirBancoDados() {
+function abrirLotPol() {
     var app = SpreadsheetApp.getActiveSpreadsheet();
-    var sheet = app.getSheetByName("BancodeDados");
+    var sheet = app.getSheetByName("LotPol").activate();
+    sheet.getRange("F12").clearContent();
+}
+
+function abrirMeta2() {
+    var app = SpreadsheetApp.getActiveSpreadsheet();
+    app.getSheetByName("Meta2").activate();
+}
+
+function abrirOficios() {
+    var app = SpreadsheetApp.getActiveSpreadsheet();
+    app.getSheetByName("Ofícios").activate();
+}
+
+function abrirReusPresos() {
+    var app = SpreadsheetApp.getActiveSpreadsheet();
+    var sheet = app.getSheetByName("ReusPresos");
     var nivel = verificaSeg();
-    if (nivel.code >= 5) { //Acesso níveis 5 e 6 - Restrict / Extreme
+    if (nivel.code >= 3) { //Acesso níveis 3 a 6 - Internal - Extreme
         sheet.activate();
     } else {
-        app.toast('Seu nível de segurança é ' + nivel.code + ' - ' + nivel.desc + '. Você não tem permissão de acesso ao Banco de Dados. Permitido apenas para níveis 5 e 6', "Acess denied!", 10);
+        app.toast('Seu nível de segurança é ' + nivel.code + ' - ' + nivel.desc + '. Você não tem permissão de acesso ao Controle de Réus Presos.', "Acess denied!", 10);
     }
 }
 
@@ -80,19 +85,24 @@ function abrirVersoes() {
     if (nivel.code >= 5) { //Acesso níveis 5 e 6 - Restrict / Extreme
         sheet.activate();
     } else {
-        app.toast('Seu nível de segurança é ' + nivel.code + ' - ' + nivel.desc + '. Você não tem permissão de acesso ao Controle de Versionamento. Permitido apenas para níveis 5 e 6', "Acess denied!", 10);
+        app.toast('Seu nível de segurança é ' + nivel.code + ' - ' + nivel.desc + '. Você não tem permissão de acesso ao Controle de Versionamento.', "Acess denied!", 10);
     }
 }
 
-function abrirCalendar() {
+function abrirVidConf() {
     var app = SpreadsheetApp.getActiveSpreadsheet();
-    var sheet = app.getSheetByName("Calendar");
-    var nivel = verificaSeg();
-    if (nivel >= 4) { //Acesso níveis 4 a 6 - Exclusive - Extreme
-        sheet.activate();
-    } else {
-        app.toast('Seu nível de segurança é ' + nivel.code + ' - ' + nivel.desc + '. Você não tem permissão de acesso aos Ajustes de Calendário. Permitido apenas para níveis 4 a 6', "Acess denied!", 10);
-    }
+    var sheet = app.getSheetByName("VidConf").activate();
+    sheet.getRange("B11").activate();
+}
+
+function abrirVistas() {
+    var app = SpreadsheetApp.getActiveSpreadsheet();
+    app.getSheetByName("Vistas").activate();
+}
+
+function abrirProcessos() {
+    var app = SpreadsheetApp.getActiveSpreadsheet();
+    app.getSheetByName("Processos").activate();
 }
 
 function abrirProdut() {
@@ -100,9 +110,10 @@ function abrirProdut() {
     app.getSheetByName("Produt").activate();
 }
 
-function abrirProcessos() {
+function abrirZonaMand() {
     var app = SpreadsheetApp.getActiveSpreadsheet();
-    app.getSheetByName("Processos").activate();
+    var sheet = app.getSheetByName("ZonaMand").activate();
+    sheet.getRange("F10").clearContent();
 }
 
 function voltarHome() {
