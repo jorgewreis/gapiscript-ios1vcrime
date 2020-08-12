@@ -48,14 +48,27 @@ function verificaSeg() {
 
 // Abre MENU CONFIGURAÇÕES na barra de tarefas
 function initMenu() {
+    var app = SpreadsheetApp.getActiveSpreadsheet();
     var ui = SpreadsheetApp.getUi();
-    var menu = ui.createMenu("Configurações");
-    menu.addItem("Calendário", abrirplanilhaCalendar());
-    var sub = ui.createMenu("Banco de Dados");
-    sub.addItem("Processos", "a");
-    sub.addItem("Informações", abrirplanilhaBD());
+    var menu = ui.createMenu('Planilhas');
+    menu.addItem('Agenda', 'abrirAgenda');
+    menu.addItem('Cálculo de pena de multa', 'abrirCalcMulta');
+    menu.addItem('Cartas Precatórias', 'abrirCartPrec');
+    menu.addItem('Consulta Zona de Mandados', 'abrirZonaMand');
+    menu.addItem('Juntadas', 'abrirJuntada');
+    menu.addItem('Lotação de Policiais', 'abrirLotPol');
+    menu.addItem('Ofícios', 'abrirOficios');
+    menu.addItem('Vistas', 'abrirVistas');
+    menu.addItem('Vídeoconferências', 'abrirVidConf');
+    menu.addItem('Réus Presos', 'abrirReusPresos');
+    menu.addItem('Meta 2', 'abrirMeta2');
+    menu.addSeparator();
+    menu.addItem('Calendário', 'abrirCalendar');
+    var sub = ui.createMenu('Banco de Dados');
+    sub.addItem('Processos', 'abrirProcessos');
+    sub.addItem('Informações', 'abrirBancoDados');
     menu.addSubMenu(sub);
     menu.addSeparator();
-    menu.addItem("Controle de versões", abrirplanilhaVersoes());
+    menu.addItem('Controle de versões', 'abrirVersoes');
     menu.addToUi();
 }
