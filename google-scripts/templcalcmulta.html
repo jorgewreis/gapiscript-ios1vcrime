@@ -53,10 +53,22 @@
             box-shadow: 1px solid #ffffff;
         }
         
-        a.waves-effect {
-            border-radius: 0;
-            font-size: 12px;
-            margin: 10px
+        h3 {
+            margin-top: 10px;
+            margin-bottom: 10px;
+        }
+        
+        span.text-muted {
+            font-size: 18px;
+        }
+        
+        span#datares.text-muted2 {
+            color: gray;
+        }
+        
+        span#valor.text-muted2 {
+            color: rgb(231, 9, 9);
+            font-weight: bold;
         }
         
         #cadastrar {
@@ -69,9 +81,13 @@
             font-style: bold
         }
         
-        button {
+        button.btn-primary {
             border: #333333 1px solid;
-            margin: 20px;
+            background-color: #cccccc;
+            color: black;
+            padding: 8px 15px;
+            margin-left: 15px;
+            margin-bottom: 20px;
         }
     </style>
     <!-- Custom styles for this template -->
@@ -80,30 +96,29 @@
 
 <body class="bg-light">
     <div class="container">
-        <div class="py-5 text-center">
-            <h3>Pena de Multa</h3>
-        </div>
-
-        <div class="col-md-8 order-md-1">
-            <form class="needs-validation" novalidate>
-                <div class="row">
-                    <div class="col-md-6 mb-3">
-                        <label for="datadofato">Data do fato</label>
-                        <input type="date" class="form-control" id="datadofato" placeholder="" value="" required>
-                        <div class="invalid-feedback">
-                            Data requerida pala o cálculo
+        <div class="row">
+            <div class="col-md-8 order-md-1">
+                <form class="needs-validation" novalidate>
+                    <h3>Pena de Multa</h3>
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label for="datadofato">Data do fato</label>
+                            <input type="date" class="form-control" id="datadofato" placeholder="" value="" required>
+                            <div class="invalid-feedback">
+                                Data requerida pala o cálculo
+                            </div>
                         </div>
-                    </div>
-                    <div class="col-md-6 mb-3">
-                        <label for="diasmulta">Dias-multa</label>
-                        <input type="number" class="form-control" id="diasmulta" placeholder="" value="" required>
-                        <div class="invalid-feedback">
-                            Valor requerido para o cálculo
+                        <div class="col-md-6 mb-3">
+                            <label for="diasmulta">Dias-multa</label>
+                            <input type="number" class="form-control" id="diasmulta" placeholder="" value="" required>
+                            <div class="invalid-feedback">
+                                Valor requerido para o cálculo
+                            </div>
                         </div>
+                        <button class="btn btn-primary" id="calcular">calcular</button>
                     </div>
-                    <button class="btn btn-primary" id="calcular">calcular</button>
-                </div>
-            </form>
+                </form>
+            </div>
         </div>
 
         <div class="row">
@@ -117,7 +132,7 @@
                             <h6 class="my-0">Data base</h6>
                             <small class="text-muted" id="database"></small>
                         </div>
-                        <span class="text-muted" id="datares">R$ 0,00</span>
+                        <span class="text-muted2" id="datares">R$ 0,00</span>
                     </li>
                 </ul>
                 <ul class="list-group mb-3">
@@ -126,7 +141,7 @@
                             <h6 class="my-0">Valor da multa</h6>
                             <small class="text-muted">Referente aos dados informados</small>
                         </div>
-                        <span class="text-muted" id="valor">R$ 0,00</span>
+                        <span class="text-muted2" id="valor">R$ 0,00</span>
                     </li>
                 </ul>
             </div>
