@@ -16,7 +16,7 @@ function abrirTemplateCalcMulta() {
     var html = template.evaluate();
 
     html.setWidth(500);
-    html.setHeight(640);
+    html.setHeight(340);
 
     SpreadsheetApp.getUi().showModalDialog(html, ".cálculo");
 

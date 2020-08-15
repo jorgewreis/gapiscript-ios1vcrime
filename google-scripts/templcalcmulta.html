@@ -44,10 +44,6 @@
             border: 1px solid lightgrey;
         }
         
-        div.buttons {
-            padding: 10px 0px 0px 40px;
-        }
-        
         input[type=number]:not(.browser-default):focus:not([readonly]) {
             border-bottom: 1px solid #00f7ff9c;
             box-shadow: 1px solid #ffffff;
@@ -56,6 +52,7 @@
         h3 {
             margin-top: 0px;
             margin-bottom: 20px;
+            color: #0069D9;
         }
         
         span.text-muted {
@@ -76,13 +73,18 @@
             font-style: bold
         }
         
+        button.btn-outline-primary {
+            margin-left: 15px;
+            margin-top: 0px;
+            margin-bottom: 40px;
+        }
+        
         button.btn-primary {
             border: #333333 1px solid;
             background-color: #cccccc;
             color: black;
             padding: 8px 15px;
             margin-left: 15px;
-            margin-bottom: 40px;
         }
     </style>
     <!-- Custom styles for this template -->
@@ -91,7 +93,7 @@
 
 <body>
     <div class="container">
-        <div class="row">
+        <div class="row" id="calc">
             <div class="col-md-8 order-md-1">
                 <form class="needs-validation" novalidate>
                     <h3>pena de multa</h3>
@@ -110,13 +112,13 @@
                                 Valor requerido para o cálculo
                             </div>
                         </div>
-                        <button class="btn btn-primary" id="calcular">calcular</button>
+                        <button class="btn btn-outline-primary" id="calcular">calcular</button>
                     </div>
                 </form>
             </div>
         </div>
 
-        <div class="row">
+        <div class="row" id="result">
             <div class="col-md-4 order-md-2 mb-4">
                 <h4 class="d-flex justify-content-between align-items-center mb-3">
                     <span class="text-muted">Resultado</span>
